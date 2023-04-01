@@ -32,8 +32,21 @@ public class EnrollmentController {
 	public EnrollmentDTO addEnrollment(@RequestBody EnrollmentDTO enrollmentDTO) {
 		
 		//TODO  complete this method in homework 4
-		
-		return null;
+		Course c = courseRepository.findByCourse_id(enrollmentDTO.course_id);
+		if (c != null) {
+			Enrollment e = new Enrollment();
+			e.setCourse(c);
+			e.setStudentEmail(enrollmentDTO.studentEmail);
+			e.setStudentName(enrollmentDTO.studentName);
+			Enrollment es = enrollmentRepository.save(e);
+			enrollmentDTO.id = es.getId();
+			return enrollmentDTO;
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"Course does not exist. " + enrollmentDTO.course_id);
+		}
+
+		//return null;
 		
 	}
 
