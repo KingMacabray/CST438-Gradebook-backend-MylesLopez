@@ -38,14 +38,18 @@ public class EnrollmentController {
 			e.setCourse(c);
 			e.setStudentEmail(enrollmentDTO.studentEmail);
 			e.setStudentName(enrollmentDTO.studentName);
-			Enrollment es = enrollmentRepository.save(e);
-			enrollmentDTO.id = es.getId();
+			e.setCourse(c);
+			e = enrollmentRepository.save(e);
+			enrollmentDTO.id = e.getId();
 			return enrollmentDTO;
+			
 		} else {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 					"Course does not exist. " + enrollmentDTO.course_id);
 		}
-
+		
+		
+		
 		//return null;
 		
 	}
