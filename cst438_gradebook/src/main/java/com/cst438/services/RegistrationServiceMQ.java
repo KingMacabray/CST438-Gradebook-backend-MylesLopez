@@ -1,7 +1,7 @@
 package com.cst438.services;
 
 
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -48,9 +48,10 @@ public class RegistrationServiceMQ extends RegistrationService {
 		System.out.println("Receive enrollment :" + enrollmentDTO); // Might not be needed
 		//TODO  complete this method in homework 4
 		
-		Course c = courseRepository.findByCourse_id(enrollmentDTO.course_id);
+		Course c = courseRepository.findByCourse_id(enrollmentDTO.course_id).orElse(null);
 		//This is a substitute to get it to compile
-		//Optional<Course> c = courseRepository.findById(enrollmentDTO.course_id);
+		//Optional<Course> c = courseRepository.findById(enrollmentDTO.course_id).orElse(null);
+		
 		if (c != null) {
 			Enrollment e = new Enrollment();
 			//e.setCourse(c);  ANOTHER OPTIONAL LOST IN TRANSLATION FOR COMPILER
