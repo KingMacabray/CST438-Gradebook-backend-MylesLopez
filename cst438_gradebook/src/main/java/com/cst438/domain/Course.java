@@ -1,6 +1,7 @@
 package com.cst438.domain;
 
 import java.util.List;
+//import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -73,6 +74,10 @@ public class Course {
 	public String toString() {
 		return "Course [course_id=" + course_id + ", title=" + title + ", instructor=" + instructor + ", year=" + year
 				+ ", semester=" + semester + "]";
+	}
+	public Course orElse(Object o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
